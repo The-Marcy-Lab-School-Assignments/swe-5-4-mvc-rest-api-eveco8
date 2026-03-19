@@ -74,7 +74,9 @@ app.delete('/api/todos/:id', todoControllers.destroyTodo )
 // TODO: Catch-all handler — send a 404 JSON error for unmatched /api routes,
 // or serve index.html for all other routes (SPA fallback)
 
-
+app.use((req, res) => {
+  res.status(404).send({ error: `Not found: ${req.originalUrl}` });
+});
 
 
 const port = 8080;
